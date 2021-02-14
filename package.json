@@ -1,0 +1,24 @@
+{
+  "name": "Node.js-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anastasiia-kolieva/Node.js-homework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anastasiia-kolieva/Node.js-homework/issues"
+  },
+  "homepage": "https://github.com/anastasiia-kolieva/Node.js-homework#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
