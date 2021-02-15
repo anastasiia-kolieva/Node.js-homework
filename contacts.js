@@ -16,21 +16,23 @@ import * as fs from "fs/promises";
 import * as path from "path";
 
 import getDirname from './helpers/dirname.js'
-// const { __dirname } = getDirname(import.meta.url);
+// import.meta.url это текущий урл на наш файл
+const { __dirname } = getDirname(import.meta.url);
+
 
 // TODO: задокументировать каждую функцию
-function listContacts() {
+export function listContacts() {
   // ...твой код
 }
 
-function getContactById(contactId) {
+export function getContactById(contactId) {
   // ...твой код
 }
 
-function removeContact(contactId) {
+export function removeContact(contactId) {
   // ...твой код
 }
 
-function addContact(name, email, phone) {
+export function addContact(name, email, phone) {
   // ...твой код
 }
