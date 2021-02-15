@@ -6,23 +6,22 @@
 // const __dirname = path.resolve();
 // console.log(__filename)
 
-// const contactsPath = path.join(__dirname, '/db/contacts.json');
-// console.log(__dirname)
-// console.log(contactsPath)
-
 // выдаёт ошибку: Cannot find package 'fs' imported from D:\GO IT\NODE\homeworks\1\Node.js-homework\contacts.js
 // у меня версия ноды v12.18.3
-import * as fs from "fs/promises";
+// import * as fs from "fs/promises";
 import * as path from "path";
 
 import getDirname from './helpers/dirname.js'
 // import.meta.url это текущий урл на наш файл
 const { __dirname } = getDirname(import.meta.url);
 
+const contactsPath = path.join(__dirname, '/db/contacts.json');
+
 
 // TODO: задокументировать каждую функцию
 export function listContacts() {
   // ...твой код
+  
 }
 
 export function getContactById(contactId) {
