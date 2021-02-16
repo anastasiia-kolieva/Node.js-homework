@@ -1,4 +1,4 @@
-import * as fs from "fs/promises";
+import { promises as fs } from "fs";
 import * as path from "path";
 import shortid from "shortid";
 import { handleError } from "./helpers/handleError.js";
@@ -13,8 +13,6 @@ export async function listContacts() {
     // данные с прочитки файла contacts.json
     const data = await fs.readFile(contactsPath);
 
-    // Проверить что приходит в консоле!!!!
-
     // JSON.parse необходимо чтоб распарсить в обьект, потому что там строка сформированна
     console.log(JSON.parse(data.toString()));
   } catch (error) {
@@ -28,14 +26,14 @@ export async function getContactById(contactId) {
     // JSON.parse необходимо чтоб распарсить в обьект, потому что там строка сформированна
     // данные с прочитки файла contacts.json
     const parseData = JSON.parse(data.toString());
-    // Проверить!!!!!
-    console.log(data.toString())
-    console.log(parseData)
+    console.log(parseData);
 
     //в данных с прочитки файла contacts.json ищем необходимый контакт по id
     const contact = parseData.find((contact) => contact.id === contactId);
-    if (!contact) console.error("Contact not found.");
     console.log(contact);
+    if (!contact) {
+      return console.log("Contact not found.");
+    }
   } catch (error) {
     handleError(error);
   }
@@ -52,21 +50,13 @@ export async function removeContact(contactId) {
 
     if (filteredContacts.length !== parseData.length) {
       // если отфильтрованный массив контактов НЕ равен изначальному массиву, значит искомый контакт убрали
-      // перезаписываем файл (путьcontactsPath ) с контактами. В него записываем масив filteredContacts 
-
-      // ПРОВЕРИТЬ!!!!!!
-
+      // перезаписываем файл (путьcontactsPath ) с контактами. В него записываем масив filteredContacts
       fs.writeFile(contactsPath, JSON.stringify(filteredContacts));
-      // fs.writeFile(contactsPath, filteredContacts);
-      console.log(filteredContacts)
-      console.log(JSON.stringify(filteredContacts))
-
       console.log("Contact was removed.");
     } else {
       console.log("Contact not found.");
       return;
     }
-
   } catch (error) {
     handleError(error);
   }
