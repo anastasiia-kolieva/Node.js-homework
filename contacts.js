@@ -52,7 +52,14 @@ export async function removeContact(contactId) {
     if (filteredContacts.length !== parseData.length) {
       // если отфильтрованный массив контактов НЕ равен изначальному массиву, значит искомый контакт убрали
       // перезаписываем файл (путьcontactsPath ) с контактами. В него записываем масив filteredContacts 
-      fs.writeFile(contactsPath, filteredContacts);
+
+      // ПРОВЕРИТЬ!!!!!!
+
+      fs.writeFile(contactsPath, JSON.stringify(filteredContacts));
+      // fs.writeFile(contactsPath, filteredContacts);
+      console.log(filteredContacts)
+      console.log(JSON.stringify(filteredContacts))
+      
       console.log("Contact was removed.");
     } else {
       console.log("Contact not found.");
