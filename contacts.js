@@ -1,5 +1,6 @@
 import * as fs from "fs/promises";
 import * as path from "path";
+import shortid from "shortid";
 import { handleError } from "./helpers/handleError.js";
 import getDirname from "./helpers/dirname.js";
 // import.meta.url это текущий урл на наш файл
@@ -59,7 +60,7 @@ export async function removeContact(contactId) {
       // fs.writeFile(contactsPath, filteredContacts);
       console.log(filteredContacts)
       console.log(JSON.stringify(filteredContacts))
-      
+
       console.log("Contact was removed.");
     } else {
       console.log("Contact not found.");
@@ -72,5 +73,14 @@ export async function removeContact(contactId) {
 }
 
 export async function addContact(name, email, phone) {
-  // ...твой код
+  try {
+    const data = await fs.readFile(contactsPath);
+    const parseData = JSON.parse(data.toString());
+
+    parseData.push({ id: shortid.generate(), name, email, phone });
+    fs.writeFile(contactsPath, JSON.stringify(parseData));
+    console.log("Contact was added.");
+  } catch (error) {
+    handleError(error);
+  }
 }
